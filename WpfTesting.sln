@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverrideMetadataFlags", "Ov
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackInheritanceMerge", "CallbackInheritanceMerge\CallbackInheritanceMerge.csproj", "{B225DCAE-4FF7-40AC-BEE4-1335E189443E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackInheritanceInherit", "CallbackInheritanceInherit\CallbackInheritanceInherit.csproj", "{3A8CD772-A57A-4884-8EFF-DB571CB250D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackOverrideInherit", "CallbackInheritanceInherit\CallbackOverrideInherit.csproj", "{3A8CD772-A57A-4884-8EFF-DB571CB250D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackAddOwnerInherit", "CallbackAddOwnerInherit\CallbackAddOwnerInherit.csproj", "{4E1A489B-E2E7-4C3B-AC41-2C2E49F5B754}"
 EndProject
