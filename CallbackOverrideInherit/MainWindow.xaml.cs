@@ -16,22 +16,24 @@ namespace WpfApp1
         {
             InitializeComponent();
 
+            // Using class inheritance to inherit DP.
+
             TestControl1 tc1 = new();
             //tc1.Test = 6;
             TestControl1.SetTest(tc1, 6);
-            var val1 = tc1.Test;
+            int val1 = TestControl1.GetTest(tc1);
 
             TestControl2 tc2 = new();
             //tc1.Test = 6;
             TestControl1.SetTest(tc1, 6);
-            var val2 = tc2.Test;
+            int val2 = TestControl1.GetTest(tc2);
 
             TestControl3 tc3 = new();
             //tc1.Test = 6;
             TestControl1.SetTest(tc1, 6);
-            var val3 = tc3.Test;    // val3 is 5 (default value), not 6 (local value).
+            int val3 = TestControl1.GetTest(tc3);    // val3 is 5 (default value), not 6 (local value of base DP).
 
-            // Per docs, use RegisterAttached for DP value inheritance.
+            // Per docs, use `RegisterAttached` for DP value inheritance to work properly.
             // Test result: the inherits flag has no effect.
         }
 
@@ -83,7 +85,7 @@ namespace WpfApp1
                 FrameworkPropertyMetadata newPropMetadata = new();
                 newPropMetadata.Inherits = true;
 
-                //TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
+                TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
             }
         }
 

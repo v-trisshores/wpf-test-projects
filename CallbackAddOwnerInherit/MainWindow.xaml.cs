@@ -16,18 +16,25 @@ namespace WpfApp1
         {
             InitializeComponent();
 
+            // Using AddOwner to inherit DP.
+
             TestControl1 tc1 = new();
-            tc1.Test = 6;
-            var val1 = tc1.Test;
+            //tc1.Test = 6;
+            TestControl1.SetTest(tc1, 6);
+            int val1 = TestControl1.GetTest(tc1);
 
             TestControl2 tc2 = new();
-            var val2 = tc2.Test;
+            //tc1.Test = 6;
+            TestControl1.SetTest(tc1, 6);
+            int val2 = TestControl1.GetTest(tc2);
 
             TestControl3 tc3 = new();
-            tc1.Test = 6;
-            var val3 = tc3.Test;    // val3 is 5 (default value), not 6 (local value). If inherits is `false', then val3 is 5 also.
+            //tc1.Test = 6;
+            TestControl1.SetTest(tc1, 6);
+            int val3 = TestControl1.GetTest(tc3);    // val3 is 5 (default value), not 6 (local value of base DP).
 
-            // Conclusion: 
+            // Per docs, use `RegisterAttached` for DP value inheritance to work properly.
+            // Test result: the inherits flag has no effect.
         }
 
         public class TestControl1 : ButtonBase
@@ -66,7 +73,7 @@ namespace WpfApp1
             public static readonly DependencyProperty TestProperty;
         }
 
-        public class TestControl2 : TestControl1
+        public class TestControl2 : DependencyObject
         {
             public TestControl2() : base() 
             { }
@@ -76,17 +83,11 @@ namespace WpfApp1
                 FrameworkPropertyMetadata newPropMetadata = new();
                 newPropMetadata.Inherits = true;
 
-                TestProperty.AddOwner(typeof(TestControl2), newPropMetadata);
+                TestControl1.TestProperty.AddOwner(typeof(TestControl2), newPropMetadata);
             }
-
-            //public int Test2
-            //{
-            //    get { return (int)GetValue(TestProperty); }
-            //    set { SetValue(TestProperty, value); }
-            //}
         }
 
-        public class TestControl3 : TestControl2
+        public class TestControl3 : DependencyObject
         {
             public TestControl3() : base() 
             { }
@@ -96,14 +97,8 @@ namespace WpfApp1
                 FrameworkPropertyMetadata newPropMetadata = new();
                 newPropMetadata.Inherits = true;
 
-                TestProperty.AddOwner(typeof(TestControl3), newPropMetadata);
+                TestControl1.TestProperty.AddOwner(typeof(TestControl3), newPropMetadata);
             }
-
-            //public int Test3
-            //{
-            //    get { return (int)GetValue(TestProperty); }
-            //    set { SetValue(TestProperty, value); }
-            //}
         }
     }
 }
