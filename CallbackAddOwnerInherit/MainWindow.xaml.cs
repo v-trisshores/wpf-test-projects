@@ -17,16 +17,17 @@ namespace WpfApp1
             InitializeComponent();
 
             TestControl1 tc1 = new();
-            TestControl1.SetTest(tc1, 6);
+            tc1.Test = 6;
             var val1 = tc1.Test;
 
             TestControl2 tc2 = new();
             var val2 = tc2.Test;
 
             TestControl3 tc3 = new();
-            var val3 = tc3.Test;    // val3 is 5 (default value), not 6 (local value). If inherits is `false', then val3 is 0.
+            tc1.Test = 6;
+            var val3 = tc3.Test;    // val3 is 5 (default value), not 6 (local value). If inherits is `false', then val3 is 5 also.
 
-            // Conclusion: the inherits flag makes the "default value" inheritable, not the "local value".
+            // Conclusion: 
         }
 
         public class TestControl1 : ButtonBase
@@ -35,10 +36,8 @@ namespace WpfApp1
 
             static TestControl1()
             {
-                pm = new FrameworkPropertyMetadata(defaultValue: 5)
-                {
-                    Inherits = true
-                };
+                pm = new FrameworkPropertyMetadata(defaultValue: 5);
+                pm.Inherits = true;
 
                 TestProperty =
                  DependencyProperty.RegisterAttached(
@@ -75,16 +74,36 @@ namespace WpfApp1
             static TestControl2()
             {
                 FrameworkPropertyMetadata newPropMetadata = new();
-                //FrameworkPropertyMetadata newPropMetadata = new(defaultValue: 8);
+                newPropMetadata.Inherits = true;
 
-                TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
+                TestProperty.AddOwner(typeof(TestControl2), newPropMetadata);
             }
+
+            //public int Test2
+            //{
+            //    get { return (int)GetValue(TestProperty); }
+            //    set { SetValue(TestProperty, value); }
+            //}
         }
 
         public class TestControl3 : TestControl2
         {
             public TestControl3() : base() 
             { }
+
+            static TestControl3()
+            {
+                FrameworkPropertyMetadata newPropMetadata = new();
+                newPropMetadata.Inherits = true;
+
+                TestProperty.AddOwner(typeof(TestControl3), newPropMetadata);
+            }
+
+            //public int Test3
+            //{
+            //    get { return (int)GetValue(TestProperty); }
+            //    set { SetValue(TestProperty, value); }
+            //}
         }
     }
 }
