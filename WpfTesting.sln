@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverrideMetadataFlags", "Ov
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackInheritanceMerge", "CallbackInheritanceMerge\CallbackInheritanceMerge.csproj", "{B225DCAE-4FF7-40AC-BEE4-1335E189443E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackOverrideInherit", "CallbackInheritanceInherit\CallbackOverrideInherit.csproj", "{3A8CD772-A57A-4884-8EFF-DB571CB250D0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackAddOwnerInherit", "CallbackAddOwnerInherit\CallbackAddOwnerInherit.csproj", "{4E1A489B-E2E7-4C3B-AC41-2C2E49F5B754}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackOverrideInherit", "CallbackOverrideInherit\CallbackOverrideInherit.csproj", "{F819F8AE-BF6C-4399-9689-DAE085DD420B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,14 +43,14 @@ Global
 		{B225DCAE-4FF7-40AC-BEE4-1335E189443E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B225DCAE-4FF7-40AC-BEE4-1335E189443E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B225DCAE-4FF7-40AC-BEE4-1335E189443E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A8CD772-A57A-4884-8EFF-DB571CB250D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A8CD772-A57A-4884-8EFF-DB571CB250D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A8CD772-A57A-4884-8EFF-DB571CB250D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A8CD772-A57A-4884-8EFF-DB571CB250D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E1A489B-E2E7-4C3B-AC41-2C2E49F5B754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E1A489B-E2E7-4C3B-AC41-2C2E49F5B754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1A489B-E2E7-4C3B-AC41-2C2E49F5B754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1A489B-E2E7-4C3B-AC41-2C2E49F5B754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F819F8AE-BF6C-4399-9689-DAE085DD420B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F819F8AE-BF6C-4399-9689-DAE085DD420B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F819F8AE-BF6C-4399-9689-DAE085DD420B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F819F8AE-BF6C-4399-9689-DAE085DD420B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
