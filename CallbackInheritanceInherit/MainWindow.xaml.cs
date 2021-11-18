@@ -18,19 +18,34 @@ namespace WpfApp1
 
             TestControl1 tc1 = new();
             tc1.Test = 6;
+            var val1 = tc1.Test;
             CallbackHistory.Clear();    // break here to view CallbackHistory.
 
             TestControl2 tc2 = new();
-            //tc2.Test++;
+            var metadata = TestControl2.TestProperty.GetMetadata(TestControl2.TestProperty.OwnerType);// as FrameworkPropertyMetadata;
+            var val2 = tc2.Test;
             CallbackHistory.Clear();    // break here to view CallbackHistory.
 
             TestControl3 tc3 = new();
-            tc3.Test++;
+            var val3 = tc3.Test;
             CallbackHistory.Clear();    // break here to view CallbackHistory.
         }
 
         public class TestControl1 : ButtonBase
         {
+            static FrameworkPropertyMetadata pm;
+
+            static TestControl1()
+            {
+                pm = new FrameworkPropertyMetadata(
+                    defaultValue: 5
+                    //, propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged1), coerceValueCallback: OnCoerce1
+                    )
+                {
+                    Inherits = true
+                };
+            }
+
             public TestControl1() : base() { }
 
             public int Test
@@ -40,15 +55,11 @@ namespace WpfApp1
             }
 
             public static readonly DependencyProperty TestProperty =
-                DependencyProperty.Register(
+                DependencyProperty.RegisterAttached(
                     name: "Test",
                     propertyType: typeof(int),
                     ownerType: typeof(TestControl1),
-                    typeMetadata: new PropertyMetadata(
-                        defaultValue: 5,
-                        propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged1),
-                        coerceValueCallback: OnCoerce1)
-                    );
+                    defaultMetadata: pm);
 
             private static void OnPropertyChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
             {
@@ -64,17 +75,20 @@ namespace WpfApp1
 
         public class TestControl2 : TestControl1
         {
+            static FrameworkPropertyMetadata pm;
+
             public TestControl2() : base() { }
 
             static TestControl2()
             {
-                PropertyMetadata newPropMetadata = new(
-                    //defaultValue: 2,
-                    propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged2)
-                    //, coerceValueCallback: OnCoerce2
-                    );
-
-                TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
+                pm = new FrameworkPropertyMetadata(
+                    //defaultValue: 5,
+                    propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged2))
+                    //coerceValueCallback: OnCoerce2)
+                {
+                    Inherits = true
+                };
+                //TestProperty.OverrideMetadata(typeof(TestControl2), pm);
             }
 
             private static void OnPropertyChanged2(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -95,12 +109,12 @@ namespace WpfApp1
 
             static TestControl3()
             {
-                PropertyMetadata newPropMetadata = new(
+                FrameworkPropertyMetadata newPropMetadata = new(
                     //defaultValue: 3,
                     propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged3)
                     );
 
-                TestProperty.OverrideMetadata(typeof(TestControl3), newPropMetadata);
+                //TestProperty.OverrideMetadata(typeof(TestControl3), newPropMetadata);
             }
 
             private static void OnPropertyChanged3(DependencyObject d, DependencyPropertyChangedEventArgs e)
