@@ -17,16 +17,22 @@ namespace WpfApp1
             InitializeComponent();
 
             TestControl1 tc1 = new();
+            //tc1.Test = 6;
             TestControl1.SetTest(tc1, 6);
             var val1 = tc1.Test;
 
             TestControl2 tc2 = new();
+            //tc1.Test = 6;
+            TestControl1.SetTest(tc1, 6);
             var val2 = tc2.Test;
 
             TestControl3 tc3 = new();
-            var val3 = tc3.Test;    // val3 is 5 (default value), not 6 (local value). If inherits is `false', then val3 is 0.
+            //tc1.Test = 6;
+            TestControl1.SetTest(tc1, 6);
+            var val3 = tc3.Test;    // val3 is 5 (default value), not 6 (local value).
 
-            // Conclusion: the inherits flag makes the "default value" inheritable, not the "local value".
+            // Per docs, use RegisterAttached for DP value inheritance.
+            // Test result: the inherits flag has no effect.
         }
 
         public class TestControl1 : ButtonBase
@@ -45,15 +51,15 @@ namespace WpfApp1
                      name: "Test",
                      propertyType: typeof(int),
                      ownerType: typeof(TestControl1),
-                     defaultMetadata: pm);
+                     pm);
             }
 
             public TestControl1() : base() { }
 
             public int Test
             {
-                get => GetTest(this);
-                set => SetTest(this, value);
+                get => (int)GetValue(TestProperty);
+                set => SetValue(TestProperty, value);
             }
 
             // Declare a get accessor method.
@@ -75,9 +81,9 @@ namespace WpfApp1
             static TestControl2()
             {
                 FrameworkPropertyMetadata newPropMetadata = new();
-                //FrameworkPropertyMetadata newPropMetadata = new(defaultValue: 8);
+                newPropMetadata.Inherits = true;
 
-                TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
+                //TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
             }
         }
 
