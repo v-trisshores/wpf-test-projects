@@ -16,7 +16,7 @@ namespace WpfApp1
 
             // TestProperty registered with metadata now.
 
-            TestControl1.Tester();  // System.InvalidOperationException: "Cannot change property metadata after it has been associated with a property."
+            //TestControl1.Tester();  // System.InvalidOperationException: "Cannot change property metadata after it has been associated with a property."
 
             TestControl1.fpm.DefaultValue = 22;  // System.InvalidOperationException: "Cannot change property metadata after it has been associated with a property."
             TestControl1 tc1 = new();

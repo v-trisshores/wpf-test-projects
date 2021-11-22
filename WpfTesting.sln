@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallbackOverrideInherit", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeMetadataFlags", "ChangeMetadataFlags\ChangeMetadataFlags.csproj", "{49A3C0A3-008C-433B-831E-A6C95090DF8A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastMetadata", "CastMetadata\CastMetadata.csproj", "{BE81140E-FA99-4218-8314-1D4AA2865581}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{49A3C0A3-008C-433B-831E-A6C95090DF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49A3C0A3-008C-433B-831E-A6C95090DF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49A3C0A3-008C-433B-831E-A6C95090DF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE81140E-FA99-4218-8314-1D4AA2865581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE81140E-FA99-4218-8314-1D4AA2865581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE81140E-FA99-4218-8314-1D4AA2865581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE81140E-FA99-4218-8314-1D4AA2865581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
