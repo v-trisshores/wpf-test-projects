@@ -12,11 +12,14 @@ namespace WpfApp1
         {
             InitializeComponent();
 
+            TestControl1 tc0 = new();
+            PropertyMetadata metadata0 = TestControl1.TestProperty.GetMetadata(tc0);
+
             TestControl1 tc1 = new();
-            var metadata1 = TestControl1.TestProperty.GetMetadata(tc1) as FrameworkPropertyMetadata;
+            FrameworkPropertyMetadata metadata1 = TestControl1.TestProperty.GetMetadata(tc1) as FrameworkPropertyMetadata;
 
             TestControl2 tc2 = new();
-            var metadata2 = TestControl2.TestProperty.GetMetadata(tc2);
+            PropertyMetadata metadata2 = TestControl2.TestProperty.GetMetadata(tc2);
         }
 
         public class TestControl1 : ButtonBase
