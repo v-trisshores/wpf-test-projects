@@ -18,6 +18,19 @@ namespace WpfApp1
             TestControl1 tc1 = new();
             TestControl2 tc2 = new();
 
+            var defaultMetadata = new FrameworkPropertyMetadata();
+            Debug.WriteLine($"\r\nAffectsArrange = {defaultMetadata.AffectsArrange}");  // false
+            Debug.WriteLine($"AffectsMeasure = {defaultMetadata.AffectsMeasure}");  // false
+            Debug.WriteLine($"AffectsParentArrange = {defaultMetadata.AffectsParentArrange}");  // false
+            Debug.WriteLine($"AffectsParentMeasure = {defaultMetadata.AffectsParentMeasure}");  // false
+            Debug.WriteLine($"AffectsRender = {defaultMetadata.AffectsRender}");  // false
+            Debug.WriteLine($"BindsTwoWayByDefault = {defaultMetadata.BindsTwoWayByDefault}");  // false
+            Debug.WriteLine($"IsNotDataBindable = {defaultMetadata.IsNotDataBindable}");  // false
+            Debug.WriteLine($"Inherits = {defaultMetadata.Inherits}");  // false
+            Debug.WriteLine($"Journal = {defaultMetadata.Journal}");  // false
+            Debug.WriteLine($"OverridesInheritanceBehavior = {defaultMetadata.OverridesInheritanceBehavior}");  // false
+            Debug.WriteLine($"SubPropertiesDoNotAffectRender = {defaultMetadata.SubPropertiesDoNotAffectRender}\r\n");  // false
+
             FrameworkPropertyMetadata metadata1 = TestControl1.TestProperty.GetMetadata(tc1) as FrameworkPropertyMetadata;
             // All can be overriden from false to true.
             // These can't be overriden from true to false:
