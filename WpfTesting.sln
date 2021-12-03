@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeMetadataFlags", "Chan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastMetadata", "CastMetadata\CastMetadata.csproj", "{BE81140E-FA99-4218-8314-1D4AA2865581}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverrideMetadataFlags2", "OverrideMetadataFlags2\OverrideMetadataFlags2.csproj", "{E128398E-4EB6-4E86-896B-6AF99352524B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OverrideFrameworkMetadataFlags", "OverrideMetadataFlags2\OverrideFrameworkMetadataFlags.csproj", "{E128398E-4EB6-4E86-896B-6AF99352524B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
