@@ -17,9 +17,21 @@ namespace WpfApp1
             LocalValueEnumerator locallySetProperties1 = _aquarium.GetLocalValueEnumerator();
             while (locallySetProperties1.MoveNext())
             {
-                Debug.WriteLine("Attemting to set a read-write property value...");
                 DependencyProperty dp = locallySetProperties1.Current.Property;
-                _aquarium.SetValue(dp, 2);
+
+                Debug.WriteLine("Attempting to get a read-write property value...");
+                int val = (int)_aquarium.GetValue(dp);
+                Debug.WriteLine($"_aquarium.FishCount: {val}");
+
+                try
+                {
+                    Debug.WriteLine("Attempting to set a read-write property value to 2...");
+                    _aquarium.SetValue(dp, 2);
+                }
+                finally
+                {
+                    Debug.WriteLine($"_aquarium.FishCount: {_aquarium.FishCount}");
+                }
             }
 
             AquariumReadOnly _aquariumReadOnly = new();
@@ -29,20 +41,32 @@ namespace WpfApp1
                 DependencyProperty dp = locallySetProperties2.Current.Property;
                 try
                 {
-                    Debug.WriteLine("Attemting to set a read-only property value...");
+                    Debug.WriteLine("Attempting to get a read-only property value...");
+                    int val = (int)_aquariumReadOnly.GetValue(dp);
+                    Debug.WriteLine($"_aquariumReadOnly.FishCount: {val}");
+
+                    Debug.WriteLine("Attempting to set a read-only property value to 2...");
                     _aquariumReadOnly.SetValue(dp, 2);
                 }
                 catch (InvalidOperationException e)
                 {
                     Debug.WriteLine(e.Message);
-                    // 'FishCount' property was registered as read-only and cannot be modified without an authorization key.
+                }
+                finally
+                {
+                    Debug.WriteLine($"_aquariumReadOnly.FishCount: {_aquariumReadOnly.FishCount}");
                 }
             }
-
-            Debug.WriteLine($"_aquarium.FishCount: {_aquarium.FishCount}");
+          
+            // Attempting to get a read-write property value...
+            // _aquarium.FishCount: 1
+            // Attempting to set a read-write property value to 2...
             // _aquarium.FishCount: 2
 
-            Debug.WriteLine($"_aquariumReadOnly.FishCount: {_aquariumReadOnly.FishCount}");
+            // Attempting to get a read-only property value...
+            // _aquariumReadOnly.FishCount: 1
+            // Attempting to set a read-only property value to 2...
+            // 'FishCount' property was registered as read-only and cannot be modified without an authorization key.
             // _aquariumReadOnly.FishCount: 1
         }
     }
