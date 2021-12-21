@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
@@ -10,28 +9,37 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static List<string> CallbackHistory = new();
-
         public MainWindow()
         {
             InitializeComponent();
 
-            TestControl1 tc1 = new();
-            tc1.Test = 6;
-            CallbackHistory.Clear();    // break here to view CallbackHistory.
+            var testControl2 = new TestControl2
+            {
+                Test = 33
+            };
 
-            TestControl2 tc2 = new();
-            //tc2.Test++;
-            CallbackHistory.Clear();    // break here to view CallbackHistory.
-
-            TestControl3 tc3 = new();
-            tc3.Test++;
-            CallbackHistory.Clear();    // break here to view CallbackHistory.
+            /*
+TestControl2 static constructor: val = -1
+TestControl1 base constructor start
+    Coerce2: val = -1
+    PropertyChanged2: val = -1
+    Derived DoSomething is called: val = -1
+TestControl1 base constructor end
+TestControl2 instance constructor start: val = -1
+TestControl2 instance constructor end: val = 5
+Coerce2: val = 5
+             */
         }
 
         public class TestControl1 : ButtonBase
         {
-            public TestControl1() : base() { }
+            public TestControl1()
+            {
+                Debug.WriteLine($"TestControl1 base constructor start");
+                Test = 11;
+                DoSomething();
+                Debug.WriteLine($"TestControl1 base constructor end");
+            }
 
             public int Test
             {
@@ -44,70 +52,53 @@ namespace WpfApp1
                     name: "Test",
                     propertyType: typeof(int),
                     ownerType: typeof(TestControl1),
-                    typeMetadata: new PropertyMetadata(
-                        defaultValue: 5,
-                        propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged1),
-                        coerceValueCallback: OnCoerce1)
+                    typeMetadata: new PropertyMetadata(defaultValue: 5)
                     );
 
-            private static void OnPropertyChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
+            public virtual void DoSomething()
             {
-                CallbackHistory.Add("OnPropertyChanged1");
-            }
-
-            private static object OnCoerce1(DependencyObject d, object baseValue)
-            {
-                CallbackHistory.Add("OnCoerce1");
-                return 11;
+                Debug.WriteLine($"DoSomething: Test={Test}");
             }
         }
 
         public class TestControl2 : TestControl1
         {
-            public TestControl2() : base() { }
+            private static int val = -1;
+
+            public TestControl2() : base()
+            {
+                Debug.WriteLine($"TestControl2 instance constructor start: val = {val}");
+                val = 5;
+                Debug.WriteLine($"TestControl2 instance constructor end: val = {val}");
+            }
 
             static TestControl2()
             {
                 PropertyMetadata newPropMetadata = new(
-                    //defaultValue: 2,
-                    propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged2)
-                    //, coerceValueCallback: OnCoerce2
+                    defaultValue: 2,
+                    propertyChangedCallback: new PropertyChangedCallback(PropertyChanged2),
+                    coerceValueCallback: Coerce2
                     );
 
                 TestProperty.OverrideMetadata(typeof(TestControl2), newPropMetadata);
+
+                Debug.WriteLine($"TestControl2 static constructor: val = {val}");
             }
 
-            private static void OnPropertyChanged2(DependencyObject d, DependencyPropertyChangedEventArgs e)
+            private static void PropertyChanged2(DependencyObject d, DependencyPropertyChangedEventArgs e)
             {
-                CallbackHistory.Add("OnPropertyChanged2");
+                Debug.WriteLine($"PropertyChanged2: val = {val}");
             }
 
-            private static object OnCoerce2(DependencyObject d, object baseValue)
+            private static object Coerce2(DependencyObject d, object baseValue)
             {
-                CallbackHistory.Add("OnCoerce2");
+                Debug.WriteLine($"Coerce2: val = {val}");
                 return 22;
             }
-        }
 
-        public class TestControl3 : TestControl2
-        {
-            public TestControl3() : base() { }
-
-            static TestControl3()
+            public override void DoSomething()
             {
-                PropertyMetadata newPropMetadata = new(
-                    //defaultValue: 3,
-                    propertyChangedCallback: new PropertyChangedCallback(OnPropertyChanged3)
-                    );
-
-                TestProperty.OverrideMetadata(typeof(TestControl3), newPropMetadata);
-            }
-
-            private static void OnPropertyChanged3(DependencyObject d, DependencyPropertyChangedEventArgs e)
-            {
-                CallbackHistory.Add("OnPropertyChanged3");
-                CallbackHistory.Add("OnPropertyChanged3: Coercing...");
-                d.CoerceValue(TestProperty);
+                Debug.WriteLine($"Derived DoSomething is called: val = {val}");
             }
         }
     }
