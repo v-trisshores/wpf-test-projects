@@ -1,0 +1,17 @@
+﻿<Window x:Class="CodeSampleCsharp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:custom="clr-namespace:CodeSampleCsharp"
+    Title="Preview events" Height="100" Width="300">
+
+    <!--<CustomControlEventSuppression>-->
+    <StackPanel Name="outerStackPanel" VerticalAlignment="Center">
+        <custom:ComponentWrapper
+            x:Name="componentWrapper"
+            HorizontalAlignment="Center">
+            <TextBox Name="componentTextBox" Width="200" />
+        </custom:ComponentWrapper>
+    </StackPanel>
+    <!--</CustomControlEventSuppression>-->
+
+</Window>
