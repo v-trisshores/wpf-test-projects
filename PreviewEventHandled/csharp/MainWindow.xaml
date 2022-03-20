@@ -5,11 +5,11 @@
     Title="Preview events" Height="100" Width="300">
 
     <!--<CustomControlXaml>-->
-    <StackPanel Name="outerStackPanel" VerticalAlignment="Center">
+    <StackPanel Name="outerStackPanel" VerticalAlignment="Center" PreviewKeyDown="outerStackPanel_PreviewKeyDown">
         <custom:ComponentWrapper
             x:Name="componentWrapper"
-            HorizontalAlignment="Center">
-            <TextBox Name="componentTextBox" Width="200" />
+            HorizontalAlignment="Center" KeyDown="componentWrapper_KeyDown">
+            <TextBox Name="componentTextBox" Width="200" KeyDown="componentTextBox_KeyDown" />
         </custom:ComponentWrapper>
     </StackPanel>
     <!--</CustomControlXaml>-->

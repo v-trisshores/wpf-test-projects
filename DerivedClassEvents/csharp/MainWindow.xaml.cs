@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,15 +12,38 @@ namespace CodeSampleCsharp
             InitializeComponent();
         }
 
+        static MainWindow()
+        {
+            EventManager.RegisterClassHandler(typeof(ComponentWrapper), KeyDownEvent, new RoutedEventHandler(KeyDownHandler));
+        }
+
+        private static void KeyDownHandler(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine($"KeyDown class handler triggered on ComponentWrapper within MainWindow.");
+        }
+
         // Debug output:
-        // OnKeyDown class handler triggered from ComponentWrapper.
+        //
+        // KeyDown class handler triggered on ComponentWrapper.
+        // KeyDown class handler triggered on ComponentWrapperBase.
+        // OnKeyDown class handler triggered on ComponentWrapper.
     }
 
     public class ComponentWrapper : ComponentWrapperBase
     {
+        static ComponentWrapper()
+        {
+            EventManager.RegisterClassHandler(typeof(ComponentWrapper), KeyDownEvent, new RoutedEventHandler(KeyDownHandler));
+        }
+
+        private static void KeyDownHandler(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine($"KeyDown class handler triggered on ComponentWrapper.");
+        }
+
         protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
         {
-            Debug.WriteLine($"OnKeyDown class handler triggered from ComponentWrapper.");
+            Debug.WriteLine($"OnKeyDown class handler triggered on ComponentWrapper.");
 
             //e.Handled = true;
 
@@ -29,9 +53,19 @@ namespace CodeSampleCsharp
 
     public class ComponentWrapperBase : StackPanel
     {
+        static ComponentWrapperBase()
+        {
+            EventManager.RegisterClassHandler(typeof(ComponentWrapperBase), KeyDownEvent, new RoutedEventHandler(KeyDownHandler));
+        }
+
+        private static void KeyDownHandler(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine($"KeyDown class handler triggered on ComponentWrapperBase.");
+        }
+
         protected override void OnKeyDown(System.Windows.Input.KeyEventArgs e)
         {
-            Debug.WriteLine($"OnKeyDown class handler triggered from ComponentWrapperBase.");
+            Debug.WriteLine($"OnKeyDown class handler triggered on ComponentWrapperBase.");
 
             //e.Handled = true;
 
