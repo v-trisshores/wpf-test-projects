@@ -1,0 +1,19 @@
+﻿<Window x:Class="CodeSampleCsharp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:custom="clr-namespace:CodeSampleCsharp"
+    Title="Object lifetime events" Height="100" Width="300">
+
+    <!--<LifetimeEventsXaml>-->
+    <Canvas x:Name="canvas">
+        <StackPanel x:Name="outerStackPanel" Initialized="InitializedEventHandler" Loaded="LoadedEventHandler" Unloaded="UnloadedEventHandler">
+            <custom:ComponentWrapper x:Name="componentWrapper" Loaded="LoadedEventHandler" Unloaded="UnloadedEventHandler">
+                <!--<TextBox Name="componentTextBox1" Initialized="InitializedEventHandler" Loaded="LoadedEventHandler" Unloaded="UnloadedEventHandler" />
+                <TextBox Name="componentTextBox2" Initialized="InitializedEventHandler" Loaded="LoadedEventHandler" Unloaded="UnloadedEventHandler" />-->
+            </custom:ComponentWrapper>
+        </StackPanel>
+        <Button Content="Remove canvas child elements" Click="Button_Click"/>
+    </Canvas>
+    <!--</LifetimeEventsXaml>-->
+
+</Window>
