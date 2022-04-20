@@ -41,6 +41,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreviewEventHandled", "Prev
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectLifeTimeEvents", "ObjectLifeTimeEvents\ObjectLifeTimeEvents.csproj", "{CD99E418-A788-438A-BB5E-52A1605AFCBD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttachedEvents", "AttachedEvents\csharp\AttachedEvents.csproj", "{9A25A1B0-2390-4721-ABB4-F24ACAB57A73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfControlLibrary", "AttachedEvents\WpfControlLibraryCsharp\WpfControlLibrary.csproj", "{15FA1401-8DE9-472F-BD74-F23C4029A333}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,14 @@ Global
 		{CD99E418-A788-438A-BB5E-52A1605AFCBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD99E418-A788-438A-BB5E-52A1605AFCBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD99E418-A788-438A-BB5E-52A1605AFCBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A25A1B0-2390-4721-ABB4-F24ACAB57A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A25A1B0-2390-4721-ABB4-F24ACAB57A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A25A1B0-2390-4721-ABB4-F24ACAB57A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A25A1B0-2390-4721-ABB4-F24ACAB57A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FA1401-8DE9-472F-BD74-F23C4029A333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FA1401-8DE9-472F-BD74-F23C4029A333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FA1401-8DE9-472F-BD74-F23C4029A333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FA1401-8DE9-472F-BD74-F23C4029A333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
