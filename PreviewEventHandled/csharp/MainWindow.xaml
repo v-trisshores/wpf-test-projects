@@ -1,16 +1,11 @@
 ﻿<Window x:Class="CodeSampleCsharp.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    xmlns:custom="clr-namespace:CodeSampleCsharp"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="Preview events" Height="100" Width="300">
 
     <!--<CustomControlXaml>-->
-    <StackPanel Name="outerStackPanel" VerticalAlignment="Center" PreviewKeyDown="outerStackPanel_PreviewKeyDown">
-        <custom:ComponentWrapper
-            x:Name="componentWrapper"
-            HorizontalAlignment="Center" KeyDown="componentWrapper_KeyDown">
-            <TextBox Name="componentTextBox" Width="200" KeyDown="componentTextBox_KeyDown" />
-        </custom:ComponentWrapper>
+    <StackPanel Name="stackPanel" KeyDown="TextBox_KeyDown" PreviewKeyDown="TextBox_PreviewKeyDown">
+        <TextBox Name="textBox" />
     </StackPanel>
     <!--</CustomControlXaml>-->
 
